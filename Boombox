@@ -1,0 +1,722 @@
+if getgenv().Boombox then
+	return
+end
+pcall(function()
+	getgenv().Boombox = true
+end)
+
+repeat wait() until game:IsLoaded();
+
+-- // Variables (Services)
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local UserInputService = game:GetService("UserInputService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local HttpService = game:GetService("HttpService")
+
+-- // Variables (Regular)
+local LocalPlayer = Players.LocalPlayer
+local SoundPaused = false
+
+repeat wait() until LocalPlayer.Character:FindFirstChild("FULLY_LOADED_CHAR")
+
+if MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, 6412475) then
+	return
+end
+local function CreateToolAndGui()
+	if Workspace:FindFirstChild("Sound") then
+		Workspace:FindFirstChild("Sound"):Destroy();
+	end
+	if CoreGui:FindFirstChild("Boombox") then
+		CoreGui:FindFirstChild("Boombox"):Destroy();
+	end
+	local BoomboxTool = Instance.new("Tool", LocalPlayer.Backpack)
+	BoomboxTool.RequiresHandle = true
+	BoomboxTool.Name = "Boombox"
+	BoomboxTool.TextureId = "rbxassetid://9105688375"
+	BoomboxTool.GripForward = Vector3.new(1, 0, 0)
+	BoomboxTool.GripPos = Vector3.new(1, -1.0, 0)
+	BoomboxTool.GripRight = Vector3.new(0, 0, 1)
+	BoomboxTool.GripUp = Vector3.new(0, 1, 0)
+
+	local Handle = Instance.new("Part", BoomboxTool)
+	Handle.CanCollide = false
+	Handle.Material = "Plastic"
+	Handle.Shape = "Block"
+	Handle.Color = Color3.new(163, 162, 165)
+	Handle.Size = Vector3.new(4, 1.2, 2)
+	Handle.Name = "Handle"
+
+	local Mesh = Instance.new("SpecialMesh", Handle)
+	Mesh.Name = "Mesh"
+	Mesh.MeshType = "FileMesh"
+	Mesh.MeshId = "rbxassetid://319536754"
+	Mesh.TextureId = "rbxassetid://319536704"
+	Mesh.VertexColor = Vector3.new(1, 1, 1)
+
+	local Boombox = Instance.new("ScreenGui")
+	local TextButton = Instance.new("TextButton")
+	local TextButton2 = Instance.new("TextButton")
+	local outline = Instance.new("Frame")
+	local outline_2 = Instance.new("Frame")
+	local outline_3 = Instance.new("Frame")
+	local outline2 = Instance.new("Frame")
+	local outline3 = Instance.new("Frame")
+	local outline4 = Instance.new("Frame")
+	local top = Instance.new("Frame")
+	local UIGradient = Instance.new("UIGradient")
+	local title = Instance.new("TextLabel")
+	local Play = Instance.new("TextButton")
+	local Stop = Instance.new("TextButton")
+	local line = Instance.new("Frame")
+	local Frame = Instance.new("Frame")
+	local Frame2 = Instance.new("Frame")
+	local holder = Instance.new("Frame")
+	local UIGradient_2 = Instance.new("UIGradient")
+	local TextBox = Instance.new("TextBox")
+	local Frame_2 = Instance.new("Frame")
+	local Frame_3 = Instance.new("Frame")
+	local Frame_4 = Instance.new("Frame")
+	local Frame_5 = Instance.new("Frame")
+
+	if syn then
+		syn.protect_gui(Boombox)
+	end
+
+	Boombox.Name = "Boombox"
+	Boombox.Parent = CoreGui
+	Boombox.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	TextButton.Parent = Boombox
+	TextButton.AnchorPoint = Vector2.new(0.5, 0.5)
+	TextButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton.Position = UDim2.fromScale(0.5, 0.05)
+	TextButton.Size = UDim2.new(0, 400, 0, 59)
+	TextButton.TextColor3 = Color3.fromRGB(27, 42, 53)
+	TextButton.BackgroundTransparency = 1
+	TextButton.TextTransparency = 1
+	TextButton.Active = false
+
+	outline.Name = "outline"
+	outline.Parent = TextButton
+	outline.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	outline.BorderColor3 = Color3.fromRGB(10, 10, 10)
+	outline.Position = UDim2.new(0, -1, 0, -1)
+	outline.Size = UDim2.new(0, 402, 0, 67)
+	outline.BackgroundTransparency = 1
+	outline.Active = false
+
+	outline_2.Name = "outline"
+	outline_2.Parent = TextButton
+	outline_2.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	outline_2.BorderColor3 = Color3.fromRGB(60, 60, 60)
+	outline_2.Position = UDim2.new(0, -2, 0, -2)
+	outline_2.Size = UDim2.new(0, 405, 0, 70)
+	outline_2.ZIndex = 0
+	outline_2.BackgroundTransparency = 1
+	outline_2.Active = false
+
+	outline_3.Name = "outline"
+	outline_3.Parent = TextButton
+	outline_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	outline_3.BorderColor3 = Color3.fromRGB(60, 60, 60)
+	outline_3.Position = UDim2.new(0, -3, 0, -3)
+	outline_3.Size = UDim2.new(0, 406, 0, 70)
+	outline_3.ZIndex = -1
+	outline_3.BackgroundTransparency = 1
+	outline_3.Active = false
+
+	top.Name = "top"
+	top.Parent = TextButton
+	top.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	top.Size = UDim2.new(0, 400, 0, 65)
+	top.BackgroundTransparency = 1
+	top.Active = false
+
+	UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(40, 40, 40)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(40, 40, 40))}
+	UIGradient.Parent = top
+
+	title.Name = "title"
+	title.Parent = top
+	title.BackgroundTransparency = 1.000
+	title.Position = UDim2.new(0, 150, 0, -2)
+	title.Size = UDim2.new(0, 115, 0, 22)
+	title.Font = Enum.Font.Code
+	title.Text = "Boombox - V.1.0"
+	title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	title.TextSize = 18.000
+	title.BackgroundTransparency = 1
+	title.TextTransparency = 1
+	title.Active = false
+
+	line.Name = "line"
+	line.Parent = top
+	line.BackgroundColor3 = Color3.fromRGB(111, 36, 173)
+	line.Position = UDim2.new(0, 0, 0, 22)
+	line.Size = UDim2.new(0, 400, 0, 1)
+	line.BackgroundTransparency = 1
+	line.Active = false
+
+	Frame.Parent = top
+	Frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Frame.Position = UDim2.new(0, 1, 0, 25)
+	Frame.Size = UDim2.new(0, 309, 0, 39)
+	Frame.BackgroundTransparency = 1
+	Frame.Active = false
+
+	holder.Name = "holder"
+	holder.Parent = top
+	holder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	holder.Position = UDim2.new(0, 55, 0, 28.5)
+	holder.Size = UDim2.new(0, 0, 0, 0)
+	holder.ZIndex = 5
+	holder.BackgroundTransparency = 1
+	holder.Active = false
+
+	UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(50, 50, 50)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(50, 50, 50))}
+	UIGradient_2.Parent = holder
+
+	TextBox.Parent = holder
+	TextBox.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+	TextBox.BorderColor3 = Color3.fromRGB(60, 60, 60)
+	TextBox.Position = UDim2.new(0, -50, 0, 1)
+	TextBox.Size = UDim2.new(0, 388, 0, 30)
+	TextBox.Font = Enum.Font.Code
+	TextBox.PlaceholderColor3 = Color3.fromRGB(190, 190, 190)
+	TextBox.PlaceholderText = "Input Music ID"
+	TextBox.Text = ""
+	TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextBox.TextSize = 14.000
+	TextBox.BackgroundTransparency = 1
+	TextBox.TextTransparency = 1
+	TextBox.Active = false
+
+	Frame_2.Parent = TextBox
+	Frame_2.BackgroundColor3 = Color3.fromRGB(111, 36, 173)
+	Frame_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Frame_2.Position = UDim2.new(0, 0, 0, 0)
+	Frame_2.Size = UDim2.new(0, 388, 0, 1)
+	Frame_2.ZIndex = 4
+	Frame_2.Active = false
+	Frame_2.BackgroundTransparency = 1
+
+	Frame_3.Parent = TextBox
+	Frame_3.BackgroundColor3 = Color3.fromRGB(111, 36, 173)
+	Frame_3.BorderColor3 = Color3.fromRGB(27, 42, 53)
+	Frame_3.Position = UDim2.new(0, 0, 0, 29)
+	Frame_3.Size = UDim2.new(0, 388, 0, 1)
+	Frame_3.ZIndex = 4
+	Frame_3.BackgroundTransparency = 1
+	Frame_3.Active = false
+
+	Frame_4.Parent = TextBox
+	Frame_4.BackgroundColor3 = Color3.fromRGB(111, 36, 173)
+	Frame_4.Size = UDim2.new(0, 1, 0, 29)
+	Frame_4.BackgroundTransparency = 1
+	Frame_4.Active = false
+
+	Frame_5.Parent = TextBox
+	Frame_5.BackgroundColor3 = Color3.fromRGB(111, 36, 173)
+	Frame_5.Position = UDim2.new(0, 388, 0, 0)
+	Frame_5.Size = UDim2.new(0, 1, 0, 29)
+	Frame_5.BackgroundTransparency = 1
+	Frame_5.Active = false
+
+	TextButton2.Parent = Boombox
+	TextButton2.AnchorPoint = Vector2.new(0.5, 0.5)
+	TextButton2.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+	TextButton2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextButton2.Position = UDim2.fromScale(0.5, 0.11)
+	TextButton2.Size = UDim2.new(0, 400, 0, 20)
+	TextButton2.TextColor3 = Color3.fromRGB(27, 42, 53)
+	TextButton2.BackgroundTransparency = 1
+	TextButton2.TextTransparency = 1
+	TextButton2.Active = false
+
+	outline2.Name = "outline"
+	outline2.Parent = TextButton2
+	outline2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	outline2.BorderColor3 = Color3.fromRGB(10, 10, 10)
+	outline2.Position = UDim2.new(0, -1, 0, -1)
+	outline2.Size = UDim2.new(0, 402, 0, 20)
+	outline2.BackgroundTransparency = 1
+	outline2.Active = false
+
+	outline3.Name = "outline"
+	outline3.Parent = TextButton2
+	outline3.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+	outline3.BorderColor3 = Color3.fromRGB(60, 60, 60)
+	outline3.Position = UDim2.new(0, -2, 0, -2)
+	outline3.Size = UDim2.new(0, 405, 0, 23)
+	outline3.ZIndex = 0
+	outline3.BackgroundTransparency = 1
+	outline3.Active = false
+
+	outline4.Name = "outline"
+	outline4.Parent = TextButton2
+	outline4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	outline4.BorderColor3 = Color3.fromRGB(60, 60, 60)
+	outline4.Position = UDim2.new(0, -3, 0, -3)
+	outline4.Size = UDim2.new(0, 406, 0, 23)
+	outline4.ZIndex = -1
+	outline4.BackgroundTransparency = 1
+	outline4.Active = false
+
+	Frame2.Parent = TextButton2
+	Frame2.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+	Frame2.Position = UDim2.new(0, 0, 0, 0)
+	Frame2.Size = UDim2.new(0, 400, 0, 18)
+	Frame2.BackgroundTransparency = 1
+	Frame2.Active = false
+
+	Play.Parent = Frame2
+	Play.BackgroundColor3 = Color3.fromRGB(0, 145, 0)
+	Play.Position = UDim2.new(0, 0, 0, 0)
+	Play.Size = UDim2.new(0, 200, 0, 18)
+	Play.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Play.Text = "Play"
+	Play.Font = Enum.Font.Code
+	Play.BackgroundTransparency = 1
+	Play.TextTransparency = 1
+	Play.TextSize = 12.000
+	Play.Active = false
+	Play.MouseButton1Click:Connect(function()
+		if TextBox.Text == "" or TextBox.Text == " " then
+			return
+		end
+		if not Workspace:FindFirstChild("Sound") then
+			-- // Music Function
+			local SoundID = Instance.new("Sound", Workspace)
+			SoundID.Volume = 0.5
+			SoundID.Name = "Sound"
+			SoundID.Looped = true
+			SoundID.Playing = true
+			SoundID.SoundId = "rbxassetid://" .. TextBox.Text
+			SoundID.MaxDistance = 999
+		else
+			if SoundPaused == true then
+				SoundPaused = false
+				Play.Text = "Play"
+				Workspace:FindFirstChild("Sound"):Resume();
+				return
+			end
+			Workspace.Sound.SoundId = "rbxassetid://" .. TextBox.Text
+		end
+	end)
+
+	Stop.Parent = Frame2
+	Stop.BackgroundColor3 = Color3.fromRGB(145, 0, 0)
+	Stop.Position = UDim2.new(0, 200, 0, 0)
+	Stop.Size = UDim2.new(0, 200, 0, 18)
+	Stop.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Stop.Text = "Stop"
+	Stop.Font = Enum.Font.Code
+	Stop.BackgroundTransparency = 1
+	Stop.TextTransparency = 1
+	Stop.TextSize = 12.000
+	Stop.Active = false
+	Stop.MouseButton1Click:Connect(function()
+		if TextBox.Text == "" or TextBox.Text == " " then
+			return
+		end
+		if Workspace:FindFirstChild("Sound") then
+			Workspace.Sound.SoundId = "rbxassetid://" .. TextBox.Text
+			if SoundPaused == false then
+				SoundPaused = true
+				Play.Text = "Resume"
+				Workspace:FindFirstChild("Sound"):Pause();
+			end
+		else
+			return
+		end
+	end)
+
+	BoomboxTool.Equipped:Connect(function()
+		TweenService:Create(TextBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(TextButton2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(TextButton2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Play, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Play, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Stop, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Stop, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline_2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(outline_3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(top, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(title, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 0, Visible = true }):Play()
+		TweenService:Create(line, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(holder, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(TextBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame_2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame_3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame_4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+		TweenService:Create(Frame_5, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 0, Visible = true }):Play()
+	end)
+	BoomboxTool.Unequipped:Connect(function()
+		TweenService:Create(Frame2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextButton2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextButton2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Play, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Play, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Stop, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Stop, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextButton, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline_2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(outline_3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(top, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(title, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { TextTransparency = 1, Visible = false }):Play()
+		TweenService:Create(line, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Frame, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(holder, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(TextBox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Frame_2, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Frame_3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Frame_4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+		TweenService:Create(Frame_5, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), { BackgroundTransparency = 1, Visible = false }):Play()
+	end)
+end
+CreateToolAndGui();
+LocalPlayer.CharacterAdded:Connect(function(C)
+	C:WaitForChild("Humanoid");
+	CreateToolAndGui();
+end)
+
+--[[-- // Services
+local Players = game:GetService("Players")
+
+-- // Vars
+local LocalPlayer = Players.LocalPlayer
+
+local function FreeBoombox()
+	if LocalPlayer.Backpack:FindFirstChild("Boombox") then
+		return
+	end
+	if LocalPlayer.Character:FindFirstChild("Boombox") then
+		return
+	end
+	local ScreenUI = Instance.new("ScreenGui")
+	local Background = Instance.new("Frame")
+	local MusicInput = Instance.new("TextBox")
+	local Play = Instance.new("TextButton")
+	local Stop = Instance.new("TextButton")
+	local NotificationCenter = Instance.new("TextLabel")
+	local Plus = Instance.new("TextButton")
+	local Minus = Instance.new("TextButton")
+	local SettingsButton = Instance.new("ImageButton")
+
+	-- // Services
+	local Players = game:GetService("Players")
+	local RunService = game:GetService("RunService")
+
+	-- // Vars
+	local Player = Players.LocalPlayer
+	local LocalPlayer = Players.LocalPlayer
+	
+	
+	local Toggled = false
+	local Toggled2 = false
+	local SoundPaused = false
+
+	-- // Boombox Tool
+	local BoomboxTool = Instance.new("Tool", LocalPlayer.Backpack)
+	BoomboxTool.RequiresHandle = true
+	BoomboxTool.Name = "Boombox"
+	BoomboxTool.TextureId = "rbxassetid://9105688375"
+	BoomboxTool.GripForward = Vector3.new(1, 0, 0)
+	BoomboxTool.GripPos = Vector3.new(1, -1.0, 0)
+	BoomboxTool.GripRight = Vector3.new(0, 0, 1)
+	BoomboxTool.GripUp = Vector3.new(0, 1, 0)
+
+	local Handle = Instance.new("Part", BoomboxTool)
+	Handle.CanCollide = false
+	Handle.Material = "Plastic"
+	Handle.Shape = "Block"
+	Handle.Color = Color3.new(163, 162, 165)
+	Handle.Size = Vector3.new(4, 1.2, 2)
+	Handle.Name = "Handle"
+
+	local Mesh = Instance.new("SpecialMesh", Handle)
+	Mesh.Name = "Mesh"
+	Mesh.MeshType = "FileMesh"
+	Mesh.MeshId = "rbxassetid://319536754"
+	Mesh.TextureId = "rbxassetid://319536704"
+	Mesh.VertexColor = Vector3.new(0.3, 0.5, 1)
+
+	BoomboxTool.Equipped:Connect(function()
+		BoomboxTool.Parent = LocalPlayer.Character
+		MusicInput.Visible = true
+		NotificationCenter.Visible = true
+		SettingsButton.Visible = true
+		Stop.Visible = true
+		Play.Visible = true
+		Minus.Visible = false
+		Plus.Visible = false
+		Toggled = false
+	end)
+	BoomboxTool.Unequipped:Connect(function()
+		BoomboxTool.Parent = LocalPlayer.Backpack
+		MusicInput.Visible = false
+		NotificationCenter.Visible = false
+		SettingsButton.Visible = false
+		Stop.Visible = false
+		Play.Visible = false
+		Minus.Visible = false
+		Plus.Visible = false
+		Toggled = false
+	end)
+
+	RunService.Stepped:Connect(function()
+		if LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") and MusicInput.Text == "" then
+			wait()
+			LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND"):Destroy();
+			NotificationCenter.Text = ""
+		end
+	end)
+	
+	local function Notify(Text)
+		if Toggled2 == false then
+			Toggled2 = true
+			NotificationCenter.Text = Text
+			wait(1.5)
+			NotificationCenter.Text = ""
+			Toggled2 = false
+		end
+	end
+
+	-- // Properties
+	ScreenUI.Name = "ScreenUI"
+	ScreenUI.Parent = game.CoreGui
+	ScreenUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	Background.Name = "Background"
+	Background.Parent = ScreenUI
+	Background.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+	Background.BackgroundTransparency = 1.000
+	Background.Position = UDim2.new(0, 543, 0, 15)
+	Background.Size = UDim2.new(0, 327, 0, 47)
+
+	MusicInput.Name = "MusicInput"
+	MusicInput.Parent = Background
+	MusicInput.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+	MusicInput.BackgroundTransparency = 0.500
+	MusicInput.Position = UDim2.new(0.74934864, 0, -0.255319118, 15)
+	MusicInput.Size = UDim2.new(0, 327, 0, 47)
+	MusicInput.Font = Enum.Font.SourceSans
+	MusicInput.Visible = false
+	MusicInput.PlaceholderColor3 = Color3.fromRGB(0, 0, 0)
+	MusicInput.PlaceholderText = "Music Input"
+	MusicInput.Text = ""
+	MusicInput.TextColor3 = Color3.fromRGB(0, 0, 0)
+	MusicInput.TextSize = 35.000
+
+	Play.Name = "Play"
+	Play.Parent = Background
+	Play.BackgroundColor3 = Color3.fromRGB(138, 255, 106)
+	Play.Position = UDim2.new(0.984556437, 0, 1.53165948, 0)
+	Play.Size = UDim2.new(0, 85, 0, 50)
+	Play.Font = Enum.Font.SourceSans
+	Play.Text = "Play"
+	Play.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Play.Visible = false
+	Play.TextSize = 30.000
+	Play.MouseButton1Click:Connect(function()
+		if MusicInput.Text == "" or MusicInput.Text == " " then
+			MusicInput.Text = "Invalid Audio!"
+			wait(1.5)
+			MusicInput.Text = ""
+			return
+		end
+		if not LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") then
+			-- // Music Function
+			local SoundID = Instance.new("Sound", LocalPlayer.Character.LowerTorso)
+			SoundID.Volume = 1
+			SoundID.Name = "BOOMBOXSOUND"
+			SoundID.Looped = true
+			SoundID.Playing = true
+			SoundID.SoundId = ""..MusicInput.Text..""
+			SoundID.MaxDistance = 999
+
+			local Audio = LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId
+			local Asset = game:GetService("MarketplaceService"):GetProductInfo(Audio)
+			NotificationCenter.Text = "Currently Playing : "..Asset.Name..""
+
+			wait()
+			SoundID.SoundId = "rbxassetid://"..MusicInput.Text..""
+		else
+			if SoundPaused == true then
+				SoundPaused = false
+				LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND"):Resume();
+			end
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId = ""..MusicInput.Text..""
+			local Audio = LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId
+			local Asset = game:GetService("MarketplaceService"):GetProductInfo(Audio)
+			NotificationCenter.Text = "Currently Playing : "..Asset.Name.." "
+
+			wait()
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId = "rbxassetid://"..MusicInput.Text..""
+		end
+	end)
+
+	Stop.Name = "Stop"
+	Stop.Parent = Background
+	Stop.BackgroundColor3 = Color3.fromRGB(255, 108, 108)
+	Stop.Position = UDim2.new(1.26373088, 0, 1.5316596, 0)
+	Stop.Size = UDim2.new(0, 85, 0, 50)
+	Stop.Font = Enum.Font.SourceSans
+	Stop.Text = "Stop"
+	Stop.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Stop.Visible = false
+	Stop.TextSize = 30.000
+	Stop.MouseButton1Click:Connect(function()
+		if MusicInput.Text == "" or MusicInput.Text == " " or MusicInput.Text == "Invalid Audio!" then
+			Notify("Couldn't find an audio to stop")
+		end
+		if LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") then
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId = ""..MusicInput.Text..""
+			local Audio = LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId
+			local Asset = game:GetService("MarketplaceService"):GetProductInfo(Audio)
+			NotificationCenter.Text = "Currently Stopped : "..Asset.Name..""
+
+			wait()
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.SoundId = "rbxassetid://"..MusicInput.Text..""
+			if SoundPaused == false then
+				SoundPaused = true
+				while wait() do
+					if SoundPaused == true then
+						LocalPlayer.Character.LowerTorso.BOOMBOXSOUND:Pause();
+					end
+				end
+			end
+		else
+			return
+		end
+	end)
+
+	NotificationCenter.Name = "Notification Center"
+	NotificationCenter.Parent = Background
+	NotificationCenter.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+	NotificationCenter.BackgroundTransparency = 0.500
+	NotificationCenter.Position = UDim2.new(0.749348581, 0, 1.13574481, 0)
+	NotificationCenter.Size = UDim2.new(0, 326, 0, 12)
+	NotificationCenter.Font = Enum.Font.SourceSans
+	NotificationCenter.ClipsDescendants = true
+	NotificationCenter.TextWrapped = true
+	NotificationCenter.Text = ""
+	NotificationCenter.Visible = false
+	NotificationCenter.TextColor3 = Color3.fromRGB(0, 0, 0)
+	NotificationCenter.TextSize = 14.000
+
+	Plus.Name = "Plus"
+	Plus.Parent = Background
+	Plus.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+	Plus.BackgroundTransparency = 0.5
+	Plus.Position = UDim2.new(1.26400006, 0, 1.53199995, 0)
+	Plus.Size = UDim2.new(0, 85, 0, 49)
+	Plus.Visible = false
+	Plus.Font = Enum.Font.GothamBlack
+	Plus.Text = "+"
+	Plus.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Plus.TextSize = 18.000
+	Plus.MouseButton1Click:Connect(function()
+		if MusicInput.Text == "" or MusicInput.Text == " " then
+			Notify("Couldn't find an audio to higher volume on")
+		end
+		if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume >= 0.85 then
+			Notify("Music Volume : Max")
+		else
+			Notify("Music Volume : "..tostring(LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume).."")
+		end
+	end)
+	Plus.MouseButton1Click:Connect(function()
+		if LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") then
+			if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume >= 0.85 then
+				LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume = 1
+				return
+			end
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume = LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume + 0.25
+		else
+			return
+		end
+	end)
+
+	Minus.Name = "Minus"
+	Minus.Parent = Background
+	Minus.BackgroundColor3 = Color3.fromRGB(138, 138, 138)
+	Minus.BackgroundTransparency = 0.5
+	Minus.Position = UDim2.new(0.984556437, 0, 1.5316596, 0)
+	Minus.Size = UDim2.new(0, 84, 0, 49)
+	Minus.Visible = false
+	Minus.Font = Enum.Font.GothamBlack
+	Minus.Text = "-"
+	Minus.TextColor3 = Color3.fromRGB(0, 0, 0)
+	Minus.TextSize = 18.000
+	Minus.TextWrapped = true
+	Minus.MouseButton1Click:Connect(function()
+		if MusicInput.Text == "" or MusicInput.Text == " " then
+			Notify("Couldn't find an audio to lower volume on")
+		end
+		if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume <= 0.15 then
+			Notify("Music Volume : Minimun")
+		else
+			Notify("Music Volume : "..tostring(LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume).."")
+		end
+	end)
+	Minus.MouseButton1Click:Connect(function()
+		if LocalPlayer.Character.LowerTorso:FindFirstChild("BOOMBOXSOUND") then
+			if LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume <= 0.15 then
+				LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume = 0
+				return
+			end
+			LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume = LocalPlayer.Character.LowerTorso.BOOMBOXSOUND.Volume - 0.25
+		else
+			return
+		end
+	end)
+
+	SettingsButton.Name = "SettingsButton"
+	SettingsButton.Parent = Background
+	SettingsButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	SettingsButton.BackgroundTransparency = 1.000
+	SettingsButton.Position = UDim2.new(0.749, 0, 1.638, 0)
+	SettingsButton.Size = UDim2.new(0, 39, 0, 39)
+	SettingsButton.Image = "rbxassetid://2788872706"
+	SettingsButton.Visible = false
+	SettingsButton.MouseButton1Click:Connect(function()
+		if Toggled == false then
+			Toggled = true
+			Play.Visible = false
+			Stop.Visible = false
+			Plus.Visible = true
+			Minus.Visible = true
+
+		elseif Toggled == true then
+			Toggled = false
+			Play.Visible = true
+			Stop.Visible = true
+			Plus.Visible = false
+			Minus.Visible = false
+		end
+	end)
+end
+FreeBoombox();
+LocalPlayer.CharacterAdded:Connect(function(C)
+	C:WaitForChild("Humanoid");
+	FreeBoombox();
+end)]]
