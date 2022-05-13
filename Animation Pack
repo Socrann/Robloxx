@@ -1,0 +1,521 @@
+if getgenv().AnimPackLoaded then
+	return
+end
+pcall(function()
+	getgenv().AnimPackLoaded = true
+	getgenv().StopAnimsKey = "c" -- and key
+	getgenv().AccentColor = "black" -- black or white
+	getgenv().AccentColor2 = Color3.fromRGB(111, 36, 173) -- any color
+end)
+
+repeat wait() until game:IsLoaded();
+
+-- // Variables (Services)
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local UserInputService = game:GetService("UserInputService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local HttpService = game:GetService("HttpService")
+
+-- // Variables (Regular)
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse();
+local MainScreenGui = LocalPlayer.PlayerGui.MainScreenGui
+local UniversalAnimation = Instance.new("Animation");
+
+repeat wait() until LocalPlayer.Character:FindFirstChild("FULLY_LOADED_CHAR")
+
+if MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, 6412475) then
+	return
+end
+local function AnimationPack()
+	for i, v in pairs(CoreGui:GetChildren()) do
+		if v.Name == "AnimationPack" or v.Name == "AnimationsPack" or v.Name == "FreeAnimationPack" or v.Name == "FreeAnimationsPack" or v.Name == "FreeAnimations" or v.Name == "FreeAnimation" or v.Name == "Animation" or v.Name == "Animations" then
+			v:Destroy();
+		end
+	end
+
+	-- // Functions
+	local function StopAnimations()
+		for i,v in pairs(LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):GetPlayingAnimationTracks()) do
+			if v.Animation.AnimationId:match("rbxassetid://3152375249") or v.Animation.AnimationId:match("rbxassetid://3152378852") or v.Animation.AnimationId:match("rbxassetid://3189773368") or v.Animation.AnimationId:match("rbxassetid://3189776546") or v.Animation.AnimationId:match("rbxassetid://3189777795") or v.Animation.AnimationId:match("rbxassetid://3189779152")  or v.Animation.AnimationId:match("rbxassetid://3487719500") then
+				v:Stop();
+			end
+		end
+	end
+	local function PlayAnimation(ID)
+		if UniversalAnimation.AnimationId == ID then
+			StopAnimations();
+			UniversalAnimation.AnimationId = "1";
+		else
+			UniversalAnimation.AnimationId = ID;
+			local AnimationTrack = LocalPlayer.Character.Humanoid:LoadAnimation(UniversalAnimation);
+			AnimationTrack:Play();
+		end
+	end
+
+	if getgenv().AccentColor == "black" then
+		-- // Properties
+		local Animation = Instance.new("ScreenGui")
+		local outline = Instance.new("Frame")
+		local Open = Instance.new("TextButton")
+		local Frame = Instance.new("Frame")
+		local outline_2 = Instance.new("Frame")
+		local ScrollingFrame = Instance.new("ScrollingFrame")
+		local UIListLayout = Instance.new("UIListLayout")
+		local Lean = Instance.new("TextButton")
+		local Lay = Instance.new("TextButton")
+		local Dance1 = Instance.new("TextButton")
+		local Dance2 = Instance.new("TextButton")
+		local Greet = Instance.new("TextButton")
+		local ChestPump = Instance.new("TextButton")
+		local Pray = Instance.new("TextButton")
+		local StopAnims = Instance.new("TextButton")
+		local outline_3 = Instance.new("Frame")
+		local Close = Instance.new("TextButton")
+
+		Animation.Name = "Animation"
+		Animation.Parent = CoreGui
+		Animation.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+		outline.Name = "outline"
+		outline.Parent = Animation
+		outline.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline.Position = UDim2.new(0, 0, 0, 500)
+		outline.Size = UDim2.new(0, 104, 0, 20)
+
+		Open.Name = "Open"
+		Open.Parent = outline
+		Open.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Open.ClipsDescendants = true
+		Open.Position = UDim2.new(0, 1, 0, 1)
+		Open.Size = UDim2.new(0, 102, 0, 18)
+		Open.Font = Enum.Font.Code
+		Open.Text = "Animations"
+		Open.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Open.TextSize = 14.000
+		Open.TextWrapped = true
+
+		Frame.Parent = outline
+		Frame.BackgroundColor3 = getgenv().AccentColor2
+		Frame.BorderColor3 = getgenv().AccentColor2
+		Frame.Position = UDim2.new(0, 2, 0, 2)
+		Frame.Size = UDim2.new(0, 100, 0, 0)
+
+		outline_2.Name = "outline"
+		outline_2.Parent = Animation
+		outline_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline_2.Position = UDim2.new(0,0,0,415)
+		outline_2.Size = UDim2.new(0, 104, 0, 195)
+		outline_2.Visible = false
+
+		ScrollingFrame.Parent = outline_2
+		ScrollingFrame.Active = true
+		ScrollingFrame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+		ScrollingFrame.BorderSizePixel = 0
+		ScrollingFrame.Position = UDim2.new(0, 1, 0, 1)
+		ScrollingFrame.Size = UDim2.new(0, 102, 0, 193)
+		ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 255)
+		ScrollingFrame.ScrollBarImageColor3 = getgenv().AccentColor2
+		ScrollingFrame.ScrollBarThickness = 3
+
+		UIListLayout.Parent = ScrollingFrame
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.Padding = UDim.new(0, 2)
+
+		Lean.Name = "Lean"
+		Lean.Parent = ScrollingFrame
+		Lean.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Lean.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Lean.Size = UDim2.new(0, 100, 0, 30)
+		Lean.Font = Enum.Font.Code
+		Lean.Text = "Lean"
+		Lean.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Lean.TextSize = 13.000
+		Lean.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3152375249");
+		end);
+
+		Lay.Name = "Lay"
+		Lay.Parent = ScrollingFrame
+		Lay.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Lay.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Lay.Size = UDim2.new(0, 100, 0, 30)
+		Lay.Font = Enum.Font.Code
+		Lay.Text = "Lay"
+		Lay.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Lay.TextSize = 13.000
+		Lay.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3152378852")
+		end);
+
+		Dance1.Name = "Dance 1"
+		Dance1.Parent = ScrollingFrame
+		Dance1.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Dance1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Dance1.Size = UDim2.new(0, 100, 0, 30)
+		Dance1.Font = Enum.Font.Code
+		Dance1.Text = "Dance1"
+		Dance1.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Dance1.TextSize = 13.000
+		Dance1.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189773368");
+		end);
+
+		Dance2.Name = "Dance 2"
+		Dance2.Parent = ScrollingFrame
+		Dance2.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Dance2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Dance2.Size = UDim2.new(0, 100, 0, 30)
+		Dance2.Font = Enum.Font.Code
+		Dance2.Text = "Dance2"
+		Dance2.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Dance2.TextSize = 13.000
+		Dance2.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189776546");
+		end);
+
+		Greet.Name = "Greet"
+		Greet.Parent = ScrollingFrame
+		Greet.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Greet.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Greet.Size = UDim2.new(0, 100, 0, 30)
+		Greet.Font = Enum.Font.Code
+		Greet.Text = "Greet"
+		Greet.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Greet.TextSize = 13.000
+		Greet.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189777795");
+		end);
+
+		ChestPump.Name = "Chest Pump"
+		ChestPump.Parent = ScrollingFrame
+		ChestPump.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		ChestPump.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ChestPump.Size = UDim2.new(0, 100, 0, 30)
+		ChestPump.Font = Enum.Font.Code
+		ChestPump.Text = "Chest Pump"
+		ChestPump.TextColor3 = Color3.fromRGB(255, 255, 255)
+		ChestPump.TextSize = 13.000
+		ChestPump.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189779152");
+		end);
+
+		Pray.Name = "Pray"
+		Pray.Parent = ScrollingFrame
+		Pray.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Pray.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Pray.Size = UDim2.new(0, 100, 0, 30)
+		Pray.Font = Enum.Font.Code
+		Pray.Text = "Pray"
+		Pray.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Pray.TextSize = 13.000
+		Pray.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3487719500");
+		end);
+
+		StopAnims.Name = "Stop Anims"
+		StopAnims.Parent = ScrollingFrame
+		StopAnims.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		StopAnims.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		StopAnims.Size = UDim2.new(0, 100, 0, 30)
+		StopAnims.Font = Enum.Font.Code
+		StopAnims.Text = "Stop Anims"
+		StopAnims.TextColor3 = Color3.fromRGB(255, 255, 255)
+		StopAnims.TextSize = 13.000
+		StopAnims.MouseButton1Click:Connect(function()
+			StopAnimations();
+		end);
+
+		outline_3.Name = "outline"
+		outline_3.Parent = outline_2
+		outline_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline_3.Position = UDim2.new(0, 0, 1, 3)
+		outline_3.Size = UDim2.new(0, 104, 0, 20)
+
+		Close.Name = "Close"
+		Close.Parent = outline_3
+		Close.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+		Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Close.ClipsDescendants = true
+		Close.Position = UDim2.new(0, 1, 0, 1)
+		Close.Size = UDim2.new(0, 102, 0, 18)
+		Close.Font = Enum.Font.Code
+		Close.Text = "Close"
+		Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+		Close.TextSize = 13.000
+		Close.TextWrapped = true
+
+		Open.MouseButton1Click:Connect(function()
+			if outline_2.Visible == false then
+				outline_2.Visible = true
+				outline.Visible = false
+			else
+				return
+			end
+		end)
+		Close.MouseButton1Click:Connect(function()
+			if outline_2.Visible == true then
+				outline_2.Visible = false
+				outline.Visible = true
+			else
+				return
+			end
+		end)
+
+		LocalPlayer.Character.Humanoid.Running:Connect(function()
+			StopAnimations();
+		end)
+		LocalPlayer.CharacterAdded:Connect(function(C)
+			C:WaitForChild("Humanoid");
+			C.Humanoid.Running:Connect(function()
+				StopAnimations();
+			end)
+		end)
+
+		Mouse.KeyDown:Connect(function(key)
+			if key == getgenv().StopAnimsKey then
+				StopAnimations();
+			end
+		end)
+	elseif getgenv().AccentColor == "white" then
+		-- // Properties
+		local Animation = Instance.new("ScreenGui")
+		local outline = Instance.new("Frame")
+		local Open = Instance.new("TextButton")
+		local Frame = Instance.new("Frame")
+		local outline_2 = Instance.new("Frame")
+		local ScrollingFrame = Instance.new("ScrollingFrame")
+		local UIListLayout = Instance.new("UIListLayout")
+		local Lean = Instance.new("TextButton")
+		local Lay = Instance.new("TextButton")
+		local Dance1 = Instance.new("TextButton")
+		local Dance2 = Instance.new("TextButton")
+		local Greet = Instance.new("TextButton")
+		local ChestPump = Instance.new("TextButton")
+		local Pray = Instance.new("TextButton")
+		local StopAnims = Instance.new("TextButton")
+		local outline_3 = Instance.new("Frame")
+		local Close = Instance.new("TextButton")
+		local outline_4 = Instance.new("Frame")
+		local Close_2 = Instance.new("TextButton")
+
+		Animation.Name = "Animation"
+		Animation.Parent = CoreGui
+		Animation.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+		outline.Name = "outline"
+		outline.Parent = Animation
+		outline.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline.Position = UDim2.new(0, 0, 0, 500)
+		outline.Size = UDim2.new(0, 104, 0, 20)
+		outline.Visible = true
+
+		Open.Name = "Open"
+		Open.Parent = outline
+		Open.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+		Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Open.ClipsDescendants = true
+		Open.Position = UDim2.new(0, 1, 0, 1)
+		Open.Size = UDim2.new(0, 102, 0, 18)
+		Open.Font = Enum.Font.Code
+		Open.Text = "Animations"
+		Open.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Open.TextSize = 14.000
+		Open.TextWrapped = true
+
+		Frame.Parent = outline
+		Frame.BackgroundColor3 = getgenv().AccentColor2
+		Frame.BorderColor3 = getgenv().AccentColor2
+		Frame.Position = UDim2.new(0, 2, 0, 2)
+		Frame.Size = UDim2.new(0, 100, 0, 0)
+
+		outline_2.Name = "outline"
+		outline_2.Parent = Animation
+		outline_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline_2.Position = UDim2.new(0,0,0,415)
+		outline_2.Size = UDim2.new(0, 104, 0, 195)
+		outline_2.Visible = false
+
+		ScrollingFrame.Parent = outline_2
+		ScrollingFrame.Active = true
+		ScrollingFrame.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+		ScrollingFrame.BorderSizePixel = 0
+		ScrollingFrame.Position = UDim2.new(0, 1, 0, 1)
+		ScrollingFrame.Size = UDim2.new(0, 102, 0, 193)
+		ScrollingFrame.ScrollBarImageColor3 = getgenv().AccentColor2
+		ScrollingFrame.CanvasSize = UDim2.new(0, 0, 0, 255)
+		ScrollingFrame.ScrollBarThickness = 3
+
+		UIListLayout.Parent = ScrollingFrame
+		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+		UIListLayout.Padding = UDim.new(0, 2)
+
+		Lean.Name = "Lean"
+		Lean.Parent = ScrollingFrame
+		Lean.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Lean.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Lean.Size = UDim2.new(0, 100, 0, 30)
+		Lean.Font = Enum.Font.Code
+		Lean.Text = "Lean"
+		Lean.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Lean.TextSize = 13.000
+		Lean.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3152375249");
+		end);
+
+		Lay.Name = "Lay"
+		Lay.Parent = ScrollingFrame
+		Lay.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Lay.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Lay.Size = UDim2.new(0, 100, 0, 30)
+		Lay.Font = Enum.Font.Code
+		Lay.Text = "Lay"
+		Lay.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Lay.TextSize = 13.000
+		Lay.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3152378852")
+		end);
+
+		Dance1.Name = "Dance 1"
+		Dance1.Parent = ScrollingFrame
+		Dance1.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Dance1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Dance1.Size = UDim2.new(0, 100, 0, 30)
+		Dance1.Font = Enum.Font.Code
+		Dance1.Text = "Dance1"
+		Dance1.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Dance1.TextSize = 13.000
+		Dance1.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189773368");
+		end);
+
+		Dance2.Name = "Dance 2"
+		Dance2.Parent = ScrollingFrame
+		Dance2.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Dance2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Dance2.Size = UDim2.new(0, 100, 0, 30)
+		Dance2.Font = Enum.Font.Code
+		Dance2.Text = "Dance2"
+		Dance2.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Dance2.TextSize = 13.000
+		Dance2.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189776546");
+		end);
+
+		Greet.Name = "Greet"
+		Greet.Parent = ScrollingFrame
+		Greet.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Greet.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Greet.Size = UDim2.new(0, 100, 0, 30)
+		Greet.Font = Enum.Font.Code
+		Greet.Text = "Greet"
+		Greet.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Greet.TextSize = 13.000
+		Greet.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189777795");
+		end);
+
+		ChestPump.Name = "Chest Pump"
+		ChestPump.Parent = ScrollingFrame
+		ChestPump.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		ChestPump.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		ChestPump.Size = UDim2.new(0, 100, 0, 30)
+		ChestPump.Font = Enum.Font.Code
+		ChestPump.Text = "Chest Pump"
+		ChestPump.TextColor3 = Color3.fromRGB(0, 0, 0)
+		ChestPump.TextSize = 13.000
+		ChestPump.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3189779152");
+		end);
+
+		Pray.Name = "Pray"
+		Pray.Parent = ScrollingFrame
+		Pray.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		Pray.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Pray.Size = UDim2.new(0, 100, 0, 30)
+		Pray.Font = Enum.Font.Code
+		Pray.Text = "Pray"
+		Pray.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Pray.TextSize = 13.000
+		Pray.MouseButton1Click:Connect(function()
+			PlayAnimation("rbxassetid://3487719500");
+		end);
+
+		StopAnims.Name = "Stop Anims"
+		StopAnims.Parent = ScrollingFrame
+		StopAnims.BackgroundColor3 = Color3.fromRGB(140, 140, 140)
+		StopAnims.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		StopAnims.Size = UDim2.new(0, 100, 0, 30)
+		StopAnims.Font = Enum.Font.Code
+		StopAnims.Text = "Stop Anims"
+		StopAnims.TextColor3 = Color3.fromRGB(0, 0, 0)
+		StopAnims.TextSize = 13.000
+		StopAnims.MouseButton1Click:Connect(function()
+			StopAnimations();
+		end);
+
+		outline_3.Name = "outline"
+		outline_3.Parent = outline_2
+		outline_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		outline_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		outline_3.Position = UDim2.new(0, 0, 1, 3)
+		outline_3.Size = UDim2.new(0, 104, 0, 20)
+
+		Close.Name = "Close"
+		Close.Parent = outline_3
+		Close.BackgroundColor3 = Color3.fromRGB(150, 150, 150)
+		Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		Close.ClipsDescendants = true
+		Close.Position = UDim2.new(0, 1, 0, 1)
+		Close.Size = UDim2.new(0, 102, 0, 18)
+		Close.Font = Enum.Font.Code
+		Close.Text = "Close"
+		Close.TextColor3 = Color3.fromRGB(0, 0, 0)
+		Close.TextSize = 14.000
+		Close.TextWrapped = true
+
+		Open.MouseButton1Click:Connect(function()
+			if outline_2.Visible == false then
+				outline_2.Visible = true
+				outline.Visible = false
+			else
+				return
+			end
+		end)
+		Close.MouseButton1Click:Connect(function()
+			if outline_2.Visible == true then
+				outline_2.Visible = false
+				outline.Visible = true
+			else
+				return
+			end
+		end)
+
+		LocalPlayer.Character.Humanoid.Running:Connect(function()
+			StopAnimations();
+		end)
+		LocalPlayer.CharacterAdded:Connect(function(C)
+			C:WaitForChild("Humanoid");
+			C.Humanoid.Running:Connect(function()
+				StopAnimations();
+			end)
+		end)
+
+		Mouse.KeyDown:Connect(function(key)
+			if key == getgenv().StopAnimsKey then
+				StopAnimations();
+			end
+		end)
+	end
+end
+AnimationPack();
