@@ -23,7 +23,7 @@ local SoundPaused = false
 
 repeat wait() until LocalPlayer.Character:FindFirstChild("FULLY_LOADED_CHAR")
 
-if MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, 6412475) then
+if MarketplaceService:UserOwnsGamePassAsync(LocalPlayer.UserId, 6207330) then
 	return
 end
 local function CreateToolAndGui()
