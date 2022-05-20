@@ -214,7 +214,7 @@ function library:CreateWindow(name, hidebutton)
 	function window:CreateTab(name)
 		local tab = { }
 		tab.name = name or ""
-		
+		window.Tabs = window.Tabs + 1
 		tab.Button = Instance.new("TextButton", window.TabsFrame)
 		tab.Button.Name = tab.name
 		tab.Button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
