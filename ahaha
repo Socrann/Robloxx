@@ -228,13 +228,6 @@ function library:CreateWindow(name, hidebutton)
 		tab.TabButton.TextStrokeTransparency = 0.000
 		tab.TabButton.TextWrapped = true
 		
-		tab.Line = Instance.new("Frame", tab.TabButton)
-		tab.Line.Name = "Line"
-		tab.Line.BackgroundColor3 = window.theme.accentcolor
-		tab.Line.BorderColor3 = Color3.fromRGB(0, 0, 0)
-		tab.Line.Position = UDim2.new(0, 0, 0, 0)
-		tab.Line.Size = UDim2.new(0, 121, 0, 2)
-		
 		local block = false
 		function tab:SelectTab()
 			repeat 
