@@ -241,16 +241,12 @@ function library:CreateWindow(name, hidebutton)
 					v.TabButton.TextColor3 = Color3.fromRGB(150, 150, 150)
 					v.TabButton.BackgroundTransparency = 0
 					v.TabButton.Name = "Tab"
-					v.Left.Visible = false
-					v.Right.Visible = false
 				end
 			end
 
 			tab.TabButton.TextColor3 = Color3.fromRGB(200, 200, 200)
 			tab.TabButton.BackgroundTransparency = 1.000
 			tab.TabButton.Name = "SelectedTab"
-			tab.Right.Visible = true
-			tab.Left.Visible = true
 			wait(0.2)
 			block = false
 		end
