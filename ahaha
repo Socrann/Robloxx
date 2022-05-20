@@ -101,7 +101,7 @@ function library:CreateWindow(name, size, hidebutton)
 	window.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	window.Frame.BorderSizePixel = 2
-	window.Frame.Position = UDim2.fromScale(0.5, 0.5)
+	window.Frame.Position = UDim2.fromScale(0.365, 0.18)
 	window.Frame.Size = window.size
 	
 	local dragging, dragInput, dragStart, startPos
