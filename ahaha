@@ -129,8 +129,8 @@ function library:CreateWindow(name, size, hidebutton)
 	window.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	window.Frame.BorderSizePixel = 2
-	window.Frame.Position = UDim2.fromScale(0.365, 0.18)
-	window.Frame.Size = UDim2.new(0, 500, 0, 600)
+	window.Frame.Position = UDim2.fromScale(0.5, 0.5)
+	window.Frame.Size = window.size
 	
 	window.Line = Instance.new("Frame", window.Frame)
 	window.Line.Name = "Line"
