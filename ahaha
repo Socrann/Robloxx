@@ -43,7 +43,7 @@ library.theme = {
 	itemscolor2 = Color3.fromRGB(210, 210, 210)
 }
 
-if library.theme.cursor and Drawing then
+--[[if library.theme.cursor and Drawing then
 	local success = pcall(function() 
 		library.cursor = Drawing.new("Image")
 		library.cursor.Data = game:HttpGet(library.theme.cursorimg)
@@ -68,7 +68,7 @@ if library.theme.cursor and Drawing then
 	elseif not success and library.cursor then
 		library.cursor:Remove()
 	end
-end
+end]]
 
 function library:CreateWindow(name, hidebutton)
 	local window = { }
