@@ -216,14 +216,14 @@ function library:CreateWindow(name, hidebutton)
 		tab.name = name or ""
 		
 		tab.Button = Instance.new("TextButton", window.TabsFrame)
-		tab.Button.Name = name
+		tab.Button.Name = tab.name
 		tab.Button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
 		tab.Button.BackgroundTransparency = 0
 		tab.Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		tab.Button.BorderSizePixel = 2
 		tab.Button.Size = UDim2.new(0, 121, 0, 40)
 		tab.Button.Font = Enum.Font.Code
-		tab.Button.Text = "Legit"
+		tab.Button.Text = tab.name
 		tab.Button.TextColor3 = Color3.fromRGB(150, 150, 150)
 		tab.Button.TextSize = 14.000
 		tab.Button.TextStrokeTransparency = 0.000
