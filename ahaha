@@ -251,7 +251,7 @@ function library:CreateWindow(name, hidebutton)
 			tab.Button.Name = "SelectedTab"
 			tab.Right.Visible = true
 			tab.Left.Visible = true
-			wait(0.2)
+			wait()
 			block = false
 		end
 
@@ -259,7 +259,7 @@ function library:CreateWindow(name, hidebutton)
 			tab:SelectTab()
 		end
 
-		tab.TabButton.MouseButton1Down:Connect(function()
+		tab.Button.MouseButton1Down:Connect(function()
 			tab:SelectTab()
 		end)
 
