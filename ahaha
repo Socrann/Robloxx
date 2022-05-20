@@ -199,7 +199,7 @@ function library:CreateWindow(name, hidebutton)
 	window.Line2.Name = "Line"
 	window.Line2.BackgroundColor3 = window.theme.accentcolor
 	window.Line2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	window.Line2.Size = UDim2.new(0, 500, 0, 2)
+	window.Line2.Size = UDim2.new(0, 484, 0, 2)
 	
 	uis.InputBegan:Connect(function(key)
 		if key.KeyCode == window.hidebutton then
@@ -254,7 +254,7 @@ function library:CreateWindow(name, hidebutton)
 			tab.TabButton.TextColor3 = Color3.fromRGB(200, 200, 200)
 			tab.TabButton.BackgroundTransparency = 1.000
 			tab.TabButton.Name = "SelectedTab"
-			wait(0.2)
+			wait()
 			block = false
 		end
 
