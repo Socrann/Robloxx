@@ -263,10 +263,7 @@ function library:CreateWindow(name, hidebutton)
 		tab.SectorsLeft = { }
 		tab.SectorsRight = { }
 		
-		function tab:CreateSector(name, side)
-			local sector = { }
-			
-		end
+		table.insert(window.Tabs, tab)
 		return tab
 	end
 	return window
