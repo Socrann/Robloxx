@@ -171,6 +171,7 @@ function library:CreateWindow(name, hidebutton)
 	window.UIGradient.Rotation = 90
 	
 	window.MainFrame = Instance.new("Frame", window.Frame)
+	window.MainFrame.Name = "Frame"
 	window.MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	window.MainFrame.BorderSizePixel = 2
