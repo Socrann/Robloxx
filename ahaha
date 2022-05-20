@@ -104,6 +104,15 @@ function library:CreateWindow(name, size, hidebutton)
 	window.Frame.Position = UDim2.fromScale(0.365, 0.18)
 	window.Frame.Size = window.size
 	
+	window.TopBar = Instance.new("Frame", window.Frame)
+	window.TopBar.Name = "Top"
+	window.TopBar.Active = true
+	window.TopBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	window.TopBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	window.TopBar.BorderSizePixel = 0
+	window.TopBar.Position = UDim2.fromScale(0, 0)
+	window.TopBar.Size = UDim2.fromOffset(500, 28)
+	
 	local dragging, dragInput, dragStart, startPos
 	uis.InputChanged:Connect(function(input)
 		if input == dragInput and dragging then
@@ -131,6 +140,9 @@ function library:CreateWindow(name, size, hidebutton)
 			dragInput = input
 		end
 	end
+	
+	window.TopBar.InputBegan:Connect(dragstart)
+	window.TopBar.InputChanged:Connect(dragend)
 	
 	window.Line = Instance.new("Frame", window.Frame)
 	window.Line.Name = "Line"
@@ -163,13 +175,16 @@ function library:CreateWindow(name, size, hidebutton)
 
 	local function checkIfGuiInFront(Pos)
 		local objects = coregui:GetGuiObjectsAtPosition(Pos.X, Pos.Y)
-		for i,v in pairs(objects) do 
-			if not string.find(v:GetFullName(), window.name) then 
+		for i,v in pairs(objects) do
+			if not string.find(v:GetFullName(), window.name) then
 				table.remove(objects, i)
-			end 
+			end
 		end
 		return (#objects ~= 0 and objects[1].AbsolutePosition ~= Pos)
 	end
+	
+	window.OpenedColorPickers = { }
+	window.Tabs = { }
 	
 	return window
 end
