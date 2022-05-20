@@ -70,10 +70,10 @@ if library.theme.cursor and Drawing then
 	end
 end
 
-function library:CreateWindow(name, size, hidebutton)
+function library:CreateWindow(name, hidebutton)
 	local window = { }
 	window.name = name or ""
-	window.size = UDim2.fromOffset(size.X, size.Y) or UDim2.fromOffset(500, 600)
+	window.size = UDim2.fromOffset(500, 600)
 	window.hidebutton = hidebutton or Enum.KeyCode.RightShift
 	window.theme = library.theme
 	
@@ -107,6 +107,7 @@ function library:CreateWindow(name, size, hidebutton)
 	window.TopBar = Instance.new("Frame", window.Frame)
 	window.TopBar.Name = "Top"
 	window.TopBar.Active = true
+	window.TopBar.BackgroundTransparency = 1.000
 	window.TopBar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.TopBar.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	window.TopBar.BorderSizePixel = 0
