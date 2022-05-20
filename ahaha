@@ -181,7 +181,6 @@ function library:CreateWindow(name, hidebutton)
 	
 	window.TabsFrame = Instance.new("Frame", window.MainFrame)
 	window.TabsFrame.Name = "Tabs"
-	window.TabsFrame.Parent = BitchBot.Frame
 	window.TabsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.TabsFrame.BackgroundTransparency = 1.000
 	window.TabsFrame.Size = UDim2.new(0, 484, 0, 40)
@@ -221,4 +220,5 @@ function library:CreateWindow(name, hidebutton)
 	
 	return window
 end
+
 return library
