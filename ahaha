@@ -165,7 +165,7 @@ function library:CreateWindow(name, hidebutton)
 	window.Name.TextXAlignment = Enum.TextXAlignment.Left
 	
 	window.UIGradient = Instance.new("UIGradient", window.Frame)
-	window.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(42, 42, 42)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(31, 31, 31)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
+	window.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(33, 33, 33)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(25, 25, 25)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
 	window.UIGradient.Rotation = 90
 	
 	window.MainFrame = Instance.new("Frame", window.Frame)
@@ -176,7 +176,7 @@ function library:CreateWindow(name, hidebutton)
 	window.MainFrame.Size = UDim2.new(0, 484, 0, 563)
 	
 	window.UIGradient2 = Instance.new("UIGradient", window.MainFrame)
-	window.UIGradient2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(42, 42, 42)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(31, 31, 31)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
+	window.UIGradient2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(33, 33, 33)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(25, 25, 25)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 20, 20))}
 	window.UIGradient2.Rotation = 90
 	
 	window.TabsFrame = Instance.new("Frame", window.MainFrame)
