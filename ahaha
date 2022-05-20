@@ -194,7 +194,7 @@ function library:CreateWindow(name, hidebutton)
 	
 	window.Line2 = Instance.new("Frame", window.MainFrame)
 	window.Line2.Name = "Line"
-	window.Line2.BackgroundColor3 = Color3.fromRGB(76, 165, 248)
+	window.Line2.BackgroundColor3 = window.theme.accentcolor
 	window.Line2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	window.Line2.Position = UDim2.new(0, 0, 0, 0)
 	window.Line2.Size = UDim2.new(0, 484, 0, 2)
