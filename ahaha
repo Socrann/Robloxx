@@ -124,7 +124,7 @@ function library:CreateWindow(name, size, hidebutton)
 	end
 	
 	window.Frame = Instance.new("Frame", window.Main)
-	window.Frame = "Background"
+	window.Frame.Name = "Background"
 	window.Frame.Active = true
 	window.Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	window.Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
