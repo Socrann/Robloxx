@@ -168,6 +168,31 @@ function library:CreateWindow(name, hidebutton)
 	window.UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(42, 42, 42)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(31, 31, 31)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
 	window.UIGradient.Rotation = 90
 	
+	window.MainFrame = Instance.new("Frame", window.Frame)
+	window.MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	window.MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	window.MainFrame.BorderSizePixel = 2
+	window.MainFrame.Position = UDim2.new(0, 8, 0, 29)
+	window.MainFrame.Size = UDim2.new(0, 484, 0, 563)
+	
+	window.UIGradient2 = Instance.new("UIGradient", window.MainFrame)
+	window.UIGradient2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(42, 42, 42)), ColorSequenceKeypoint.new(0.12, Color3.fromRGB(31, 31, 31)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))}
+	window.UIGradient2.Rotation = 90
+	
+	window.TabsFrame = Instance.new("Frame", window.MainFrame)
+	window.TabsFrame.Name = "Tabs"
+	window.TabsFrame.Parent = BitchBot.Frame
+	window.TabsFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	window.TabsFrame.BackgroundTransparency = 1.000
+	window.TabsFrame.Size = UDim2.new(0, 484, 0, 40)
+	window.TabsFrame.ZIndex = 0
+	
+	window.UIListLayout = Instance.new("UIListLayout", window.TabsFrame)
+	window.UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+	window.UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	window.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	window.UIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+	
 	uis.InputBegan:Connect(function(key)
 		if key.KeyCode == window.hidebutton then
 			window.Frame.Visible = not window.Frame.Visible
@@ -186,6 +211,13 @@ function library:CreateWindow(name, hidebutton)
 	
 	window.OpenedColorPickers = { }
 	window.Tabs = { }
+	
+	function window:CreateTab(name)
+		local tab = { }
+		tab.name = name or ""
+		
+		
+	end
 	
 	return window
 end
