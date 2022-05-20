@@ -215,7 +215,56 @@ function library:CreateWindow(name, hidebutton)
 		local tab = { }
 		tab.name = name or ""
 		
+		tab.Button = Instance.new("TextButton", window.TabsFrame)
+		tab.Button.Name = name
+		tab.Button.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+		tab.Button.BackgroundTransparency = 0
+		tab.Button.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		tab.Button.BorderSizePixel = 2
+		tab.Button.Size = UDim2.new(0, 121, 0, 40)
+		tab.Button.Font = Enum.Font.Code
+		tab.Button.Text = "Legit"
+		tab.Button.TextColor3 = Color3.fromRGB(150, 150, 150)
+		tab.Button.TextSize = 14.000
+		tab.Button.TextStrokeTransparency = 0.000
+		tab.Button.TextWrapped = true
 		
+		local block = false
+		function tab:SelectTab()
+			repeat 
+				wait()
+			until block == false
+
+			block = true
+			for i,v in pairs(window.Tabs) do
+				if v ~= tab then
+					v.Button.TextColor3 = Color3.fromRGB(150, 150, 150)
+					v.Button.Name = "Tab"
+					v.BackgroundTransparency = 1.000
+					v.Left.Visible = false
+					v.Right.Visible = false
+				end
+			end
+
+			tab.Button.TextColor3 = Color3.fromRGB(200, 200, 200)
+			tab.Button.BackgroundTransparency = 0
+			tab.Button.Name = "SelectedTab"
+			tab.Right.Visible = true
+			tab.Left.Visible = true
+			wait(0.2)
+			block = false
+		end
+
+		if #window.Tabs == 0 then
+			tab:SelectTab()
+		end
+
+		tab.TabButton.MouseButton1Down:Connect(function()
+			tab:SelectTab()
+		end)
+
+		tab.SectorsLeft = { }
+		tab.SectorsRight = { }
 	end
 	
 	return window
