@@ -16,10 +16,10 @@ end
 Logs.Name = "Logs"
 Logs.Parent = LogHolder
 Logs.AnchorPoint = Vector2.new(0.5, 0.5)
-Logs.BackgroundColor3 = Color3.new(1, 1, 1)
+Logs.BackgroundTransparency = 0.8
+Logs.BackgroundColor3 = Color3.new(0, 0, 0)
 Logs.Position = UDim2.new(0.200000003, 0, 0.200000003, 0)
-Logs.Size = UDim2.new(0, 400, 0, 250)
-Logs.Style = Enum.FrameStyle.DropShadow
+Logs.Size = UDim2.new(0, 250, 0, 400)
 
 Scroll.Name = "Scroll"
 Scroll.Parent = Logs
@@ -27,8 +27,8 @@ Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
 Scroll.BackgroundTransparency = 1
 Scroll.BorderSizePixel = 0
 Scroll.Size = UDim2.new(1, 0, 1, 0)
-Scroll.CanvasSize = UDim2.new(0, 0, 0, 0)
-Scroll.ScrollBarThickness = 6
+Scroll.CanvasSize = UDim2.new(0, 0, 0, 3)
+Scroll.ScrollBarThickness = 1
 
 Template.Name = "Template"
 Template.Parent = Logs
@@ -36,10 +36,11 @@ Template.BackgroundColor3 = Color3.new(1, 1, 1)
 Template.BackgroundTransparency = 1
 Template.Position = UDim2.new(0, 0, 0, -25)
 Template.Size = UDim2.new(1, 0, 0, 20)
-Template.Font = Enum.Font.ArialBold
+Template.Font = Enum.Font.Code
 Template.Text = ""
 Template.TextColor3 = Color3.new(1, 1, 1)
-Template.TextSize = 15
+Template.TextSize = 13
+Template.TextStrokeTransparency = 0
 Template.TextXAlignment = Enum.TextXAlignment.Left
 Template.TextWrap = true
 
@@ -132,8 +133,8 @@ local LogPlr = function(plr)
 			if string.len(msg) >= 1000 then return nil end
 			if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
 			if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
-			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then GenLog(plr.Name..': '..msg, Color3.new(255, 0, 0), dateDat) else
-			GenLog(plr.Name..': '..msg, Color3.new(255, 255, 255), dateDat)
+			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then GenLog(plr.Name..': '..msg, Color3.new(0.5, 0.5, 0.5), dateDat) else
+			GenLog(plr.Name..' : '..msg, Color3.new(255, 255, 255), dateDat)
 			end
 	end)
 end
