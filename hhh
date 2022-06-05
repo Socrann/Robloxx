@@ -1,5 +1,9 @@
-if game:service('RunService'):IsStudio() then print('!STUDIO!') else
-	if game:service('CoreGui'):findFirstChild('LogHolder') then return nil
+if game.CoreGui:FindFirstChild('LogHolder') then
+	return
+end
+for _, v in pairs(game.CoreGui:GetChildren()) do
+	if v.Name == "LogHolder" then
+		v:Remove();
 	end
 end
 
@@ -9,24 +13,24 @@ local Scroll = Instance.new("ScrollingFrame")
 local Template = Instance.new("TextLabel")
 
 LogHolder.Name = "LogHolder"
-if game:service('RunService'):IsStudio() then LogHolder.Parent = game.Players.LocalPlayer.PlayerGui else
-	LogHolder.Parent = game.CoreGui
-end
+LogHolder.Parent = game.CoreGui
 
 Logs.Name = "Logs"
 Logs.Parent = LogHolder
-Logs.AnchorPoint = Vector2.new(0.5, 0.5)
 Logs.BackgroundTransparency = 0.8
 Logs.BackgroundColor3 = Color3.new(0, 0, 0)
-Logs.Position = UDim2.new(0.200000003, 0, 0.200000003, 0)
-Logs.Size = UDim2.new(0, 250, 0, 400)
+Logs.Position = UDim2.fromScale(0.15, 0.82)
+Logs.Size = UDim2.new(0, 500, 0, 200)
+Logs.BorderColor3 = Color3.fromRGB(0,0,0)
+Logs.AnchorPoint = Vector2.new(0.5, 0.5)
 
 Scroll.Name = "Scroll"
 Scroll.Parent = Logs
 Scroll.BackgroundColor3 = Color3.new(1, 1, 1)
+Scroll.Position = UDim2.new(0,8,0,5)
 Scroll.BackgroundTransparency = 1
 Scroll.BorderSizePixel = 0
-Scroll.Size = UDim2.new(1, 0, 1, 0)
+Scroll.Size = UDim2.new(0, 491, 0, 190)
 Scroll.CanvasSize = UDim2.new(0, 0, 0, 3)
 Scroll.ScrollBarThickness = 1
 
@@ -50,12 +54,12 @@ Logs.Draggable = true
 local loggedTable = {}
 
 local getTotalSize = function()
-local totalSize = UDim2.new(0, 0, 0, 0)
-	
+	local totalSize = UDim2.new(0, 0, 0, 0)
+
 	for i, v in next, loggedTable do
 		totalSize = totalSize + UDim2.new(0, 0, 0, v.Size.Y.Offset)
 	end
-	
+
 	return totalSize
 end
 
@@ -64,10 +68,10 @@ local TotalNum = 0
 
 local function GenLog(txt, colo, time)
 	local oldColo = Color3.fromRGB(0, 0, 0)	
-	
+
 	local Temp = Template:Clone()
 	Temp.Parent = Scroll
-	Temp.Name = txt..'Logged'
+	Temp.Name = txt..' Logged'
 	Temp.Text = tostring(txt)
 	Temp.Visible = true
 	Temp.Position = BUD + UDim2.new(0, 0, 0, 0)
@@ -78,22 +82,22 @@ local function GenLog(txt, colo, time)
 	timeVal.Value = time
 
 	TotalNum = TotalNum + 1
-	
-	if not Temp.TextFits then repeat Temp.Size = UDim2.new(Temp.Size.X.Scale, Temp.Size.X.Offset, Temp.Size.Y.Scale, Temp.Size.Y.Offset + 10)
-		Temp.Text = txt
-	until Temp.TextFits 
-end
+
+	if not Temp.TextFits then repeat Temp.Size = UDim2.new(Temp.Size.X.Scale, Temp.Size.X.Offset, Temp.Size.Y.Scale, Temp.Size.Y.Offset + 1)
+			Temp.Text = txt
+		until Temp.TextFits 
+	end
 
 	BUD = BUD + UDim2.new(0, 0, 0, Temp.Size.Y.Offset)
-	
+
 	table.insert(loggedTable, Temp)
-	
+
 	local totSize = getTotalSize()
-	
-	if totSize.Y.Offset >= Scroll.CanvasSize.Y.Offset then Scroll.CanvasSize = UDim2.new(totSize.X.Scale, totSize.X.Offset, totSize.Y.Scale, totSize.Y.Offset + 100)
-	Scroll.CanvasPosition = Scroll.CanvasPosition + Vector2.new(0, totSize.Y.Offset) 
+
+	if totSize.Y.Offset >= Scroll.CanvasSize.Y.Offset then Scroll.CanvasSize = UDim2.new(totSize.X.Scale, totSize.X.Offset, totSize.Y.Scale, totSize.Y.Offset + 1)
+		Scroll.CanvasPosition = Scroll.CanvasPosition + Vector2.new(0, totSize.Y.Offset) 
 	end
-	
+
 	return Temp
 end
 
@@ -102,13 +106,13 @@ local ChatData = ""
 local function SaveToFile()
 	local t = os.date("*t")
 	local dateDat = t['hour']..' '..t['min']..' '..t['sec']..' '..t['day']..'.'..t['month']..'.'..t['year']
-	
+
 	ChatData = ""
-	
+
 	for i, v in pairs(Scroll:GetChildren()) do
 		ChatData = ChatData..v.TimeVal.Value..' '..v.Text..'\n'
 	end
-	
+
 	writefile('ChatLogs '..dateDat..'.txt', ChatData)
 end
 
@@ -125,24 +129,65 @@ local function Clear()
 end
 
 local LogPlr = function(plr)
-			plr.Chatted:connect(function(msg)
-				
-			local t = os.date("*t")
-			local dateDat = t['hour']..':'..t['min']..':'..t['sec']
-	
-			if string.len(msg) >= 1000 then return nil end
-			if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
-			if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
-			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then GenLog(plr.Name..': '..msg, Color3.new(0.5, 0.5, 0.5), dateDat) else
-			GenLog(plr.Name..' : '..msg, Color3.new(255, 255, 255), dateDat)
+	plr.Chatted:connect(function(msg)
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+
+		if string.len(msg) >= 1000 then return nil end
+		if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
+		if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
+
+		if plr.DataFolder.Information:FindFirstChild("Crew").Value:match(game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value) then
+			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
+				GenLog(plr.Name..': '..msg, Color3.new(0.4, 0.4, 1), dateDat)
+			else
+				GenLog(plr.Name..' : '..msg, Color3.new(0.4, 0.4, 1), dateDat)
 			end
+		else
+			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
+				GenLog(plr.Name..': '..msg, Color3.new(0.8, 0.8, 0.8), dateDat)
+			else
+				GenLog(plr.Name..' : '..msg, Color3.new(255, 255, 255), dateDat)
+			end
+		end
 	end)
 end
 
 for i, v in pairs(game.Players:GetChildren()) do
-	LogPlr(v)
+	if v ~= game.Players.LocalPlayer then
+		if v:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+			LogPlr(v)
+			local t = os.date("*t")
+			local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+			GenLog("[Console]: Found friend " .. v.Name .. ".", Color3.new(0.45, 0.45, 0.45), dateDat)
+		else
+			LogPlr(v)
+		end
+	end
 end
 
+game.Players.PlayerRemoving:connect(function(plr)
+	if plr:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+		GenLog("[Console]: Your friend " .. plr.Name .. " has left the game.", Color3.new(0.45, 0.45, 0.45), dateDat)
+	else
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+		GenLog("[Console]: " .. plr.Name .. " has left the game.", Color3.new(0.45, 0.45, 0.45), dateDat)
+	end
+end)
+
 game.Players.PlayerAdded:connect(function(plr)
-	LogPlr(plr)
+	if plr:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+		LogPlr(plr)
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+		GenLog("[Console]: Your friend " .. plr.Name .. " has joined the game.", Color3.new(0.45, 0.45, 0.45), dateDat)
+	else
+		LogPlr(plr)
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+		GenLog("[Console]: " .. plr.Name .. " has joined the game.", Color3.new(0.45, 0.45, 0.45), dateDat)
+	end
 end)
