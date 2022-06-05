@@ -74,7 +74,7 @@ local function GenLog(txt, colo, time)
 	Temp.Text = tostring(txt)
 	Temp.Visible = true
 	Temp.Position = BUD + UDim2.new(0, 0, 0, 0)
-	if colo then oldColo = colo Temp.TextColor3 = colo elseif not colo then Temp.TextColor3 = Color3.fromRGB(200, 200, 200) end
+	if colo then oldColo = colo Temp.TextColor3 = colo elseif not colo then Temp.TextColor3 = Color3.fromRGB(255, 255, 255) end
 
 	local timeVal = Instance.new('StringValue', Temp)
 	timeVal.Name = 'TimeVal'
@@ -146,7 +146,7 @@ local LogPlr = function(plr)
 			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
 				GenLog(plr.Name..' : '..msg, Color3.new(0.8, 0.8, 0.8), dateDat)
 			else
-				GenLog(plr.Name..' : '..msg, Color3.new(255, 255, 255), dateDat)
+				GenLog(plr.Name..' : '..msg, Color3.fromRGB(255, 255, 255), dateDat)
 			end
 		end
 	end)
