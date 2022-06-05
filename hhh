@@ -49,7 +49,6 @@ Template.TextXAlignment = Enum.TextXAlignment.Left
 Template.TextWrap = true
 
 Logs.Active = true
-Logs.Draggable = true
 
 local loggedTable = {}
 
