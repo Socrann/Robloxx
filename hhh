@@ -136,10 +136,6 @@ local LogPlr = function(plr)
 		if string.lower(msg) == '/e clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
 		if string.lower(msg) == '/e savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
 		
-		if plr == game:GetService('Players').LocalPlayer then
-			GenLog('You : '..msg, Color3.new(0.3, 0.5, 1), dateDat)
-			return nil
-		end
 		if game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value ~= "" and plr.DataFolder.Information:FindFirstChild("Crew").Value:match(game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value) or plr:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
 			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
 				GenLog(plr.Name..' : '..msg, Color3.new(0.3, 0.5, 1), dateDat)
