@@ -133,35 +133,37 @@ local LogPlr = function(plr)
 		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
 
 		if string.len(msg) >= 1000 then return nil end
-		if string.lower(msg) == 'clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
-		if string.lower(msg) == 'savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
-
-		if plr.DataFolder.Information:FindFirstChild("Crew").Value:match(game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value) or plr:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+		if string.lower(msg) == '/e clear' and plr == game:service('Players').LocalPlayer then Clear() return nil end
+		if string.lower(msg) == '/e savetofile' and plr == game:service('Players').LocalPlayer then SaveToFile() return nil end
+		
+		if plr == game:GetService('Players').LocalPlayer then
+			GenLog('You : '..msg, Color3.new(0.3, 0.5, 1), dateDat)
+			return nil
+		end
+		if game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value ~= "" and plr.DataFolder.Information:FindFirstChild("Crew").Value:match(game:service('Players').LocalPlayer.DataFolder.Information:FindFirstChild("Crew").Value) or plr:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
 			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
-				GenLog(plr.Name..' : '..msg, Color3.new(0.4, 0.4, 1), dateDat)
+				GenLog(plr.Name..' : '..msg, Color3.new(0.3, 0.5, 1), dateDat)
 			else
-				GenLog(plr.Name..' : '..msg, Color3.new(0.4, 0.4, 1), dateDat)
+				GenLog(plr.Name..' : '..msg, Color3.new(0.3, 0.5, 1), dateDat)
 			end
 		else
 			if string.sub(msg, 1, 1):match('%p') and string.sub(msg, 2, 2):match('%a') and string.len(msg) >= 5 then
 				GenLog(plr.Name..' : '..msg, Color3.new(0.8, 0.8, 0.8), dateDat)
 			else
-				GenLog(plr.Name..' : '..msg, Color3.fromRGB(255, 255, 255), dateDat)
+				GenLog(plr.Name..' : '..msg, Color3.new(1, 1, 1), dateDat)
 			end
 		end
 	end)
 end
 
 for i, v in pairs(game.Players:GetChildren()) do
-	if v ~= game.Players.LocalPlayer then
-		if v:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
-			LogPlr(v)
-			local t = os.date("*t")
-			local dateDat = t['hour']..':'..t['min']..':'..t['sec']
-			GenLog("[Console]: Found friend " .. v.Name .. ".", Color3.new(0.45, 0.45, 0.45), dateDat)
-		else
-			LogPlr(v)
-		end
+	if v:IsFriendsWith(game:GetService("Players").LocalPlayer.UserId) then
+		LogPlr(v)
+		local t = os.date("*t")
+		local dateDat = t['hour']..':'..t['min']..':'..t['sec']
+		GenLog("[Console]: Found friend " .. v.Name .. ".", Color3.new(0.45, 0.45, 0.45), dateDat)
+	else
+		LogPlr(v)
 	end
 end
 
